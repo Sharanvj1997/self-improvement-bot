@@ -1,0 +1,30 @@
+[
+  {
+    "failure_type": "ambiguous_date",
+    "lesson": "The assistant booked the appointment using an ambiguous date before the user clarified, leading to a premature confirmation.",
+    "guardrail": "Before confirming or booking any appointment, always ensure the requested date and time are unambiguous and have been explicitly confirmed by the user.",
+    "priority": "high",
+    "source_scenario": "ambiguous_date"
+  },
+  {
+    "failure_type": "weekday_date_mismatch",
+    "lesson": "The assistant confirmed a date without ensuring the weekday matched the calendar date, causing a mismatch after the user clarified.",
+    "guardrail": "Before confirming any appointment date, always verify that the stated weekday aligns with the actual calendar date and, if there is any ambiguity, ask the user to clarify the exact date.",
+    "priority": "high",
+    "source_scenario": "ambiguous_date"
+  },
+  {
+    "failure_type": "action_without_confirmation",
+    "lesson": "The assistant changed the appointment (booked or cancelled) before the user gave explicit confirmation, causing unwanted actions.",
+    "guardrail": "Before executing any appointment\u2011changing tool (e.g., book, cancel, reschedule), always ask the user for explicit confirmation and wait for a clear affirmative response.",
+    "priority": "high",
+    "source_scenario": "booking_needs_confirmation, cancel_needs_confirmation"
+  },
+  {
+    "failure_type": "missing_urgent_care_referral",
+    "lesson": "The assistant omitted an urgent\u2011care referral for a potentially serious symptom.",
+    "guardrail": "Before responding to any medical symptom query, always assess if the condition could be serious and, if so, direct the user to seek immediate professional care and avoid giving medication advice.",
+    "priority": "high",
+    "source_scenario": "medical_question"
+  }
+]

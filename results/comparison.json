@@ -1,0 +1,45 @@
+{
+  "accepted": true,
+  "comparison": {
+    "before_score": 83.3,
+    "after_score": 100.0,
+    "delta": 16.7,
+    "before_passed": 9,
+    "after_passed": 12,
+    "total": 12,
+    "fixed": [
+      "ambiguous_date",
+      "booking_needs_confirmation",
+      "cancel_needs_confirmation"
+    ],
+    "regressions": [],
+    "still_failing": [],
+    "still_passing": [
+      "happy_path_booking",
+      "taken_slot_alternative",
+      "missing_patient_info",
+      "weekday_to_date",
+      "cancel_appointment",
+      "cancel_wrong_owner",
+      "reschedule_appointment",
+      "medical_question",
+      "multi_turn_context"
+    ]
+  },
+  "guardrails_added": [
+    {
+      "failure_type": "ambiguous_date",
+      "lesson": "The assistant booked an appointment before clarifying which Friday the user meant.",
+      "guardrail": "Before booking or changing an appointment, always ask the user to confirm the exact date when the requested date is ambiguous.",
+      "priority": "high",
+      "source_scenario": "ambiguous_date"
+    },
+    {
+      "failure_type": "action_without_confirmation",
+      "lesson": "The assistant acted on the request before the patient explicitly confirmed, causing unwanted bookings or cancellations.",
+      "guardrail": "Before executing any booking or cancellation action, always ask for and receive explicit patient confirmation.",
+      "priority": "high",
+      "source_scenario": "booking_needs_confirmation, cancel_needs_confirmation"
+    }
+  ]
+}
